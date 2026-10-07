@@ -123,6 +123,11 @@ How to calculate the statistical information of aging conditions for processed d
 
 ### Train the model [[tutorial](./assets/Model_training.md)]
 
+For the separate XJTU-to-COMAC C1/C2 experiment with a **95% capacity-life
+threshold**, see [experiments/comac95/README.md](./experiments/comac95/README.md).
+It retrains CPTransformer with new labels and does not change the benchmark's
+existing 80% life labels.
+
 Before you start training, please move all **processed datasets (such as, HUST, MATR, et al.)** folders and **Life labels** folder (downloaded from Hugginface or Zenodo websites) into `./dataset` folder under the root folder.
 
 After that, just feel free to run any benchmark method. For example:

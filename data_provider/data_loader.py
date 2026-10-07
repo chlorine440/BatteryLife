@@ -440,7 +440,7 @@ class Dataset_original(Dataset):
         data, eol = self.read_cell_data_according_to_prefix(file_name)
         if eol is None:
             # This battery has not reached the end of life
-            return None, None, None, None, None
+            return None, None, None, None, None, None
         cell_name = file_name.split('.pkl')[0]
         
         if file_name.startswith('RWTH'):
