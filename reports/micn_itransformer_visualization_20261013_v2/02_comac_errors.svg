@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="901.19952pt" height="389.99952pt" viewBox="0 0 901.19952 389.99952" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-13T21:43:16.672928</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.8.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 389.99952 
+L 901.19952 389.99952 
+L 901.19952 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 110.173281 351.66952 
+L 446.13576 351.66952 
+L 446.13576 41.037855 
+L 110.173281 41.037855 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#p97c8d7793e)">
+    <image xlink:href="data:image/png;base64,
+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" id="image7a10800517" transform="scale(1 -1) translate(0 -311.04)" x="110.173281" y="-40.62952" width="336.24" height="311.04"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="mbca1f29538" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mbca1f29538" x="194.163901" y="351.66952" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="194.163901" y="366.543114" transform="rotate(-0 194.163901 366.543114)">C1</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#mbca1f29538" x="362.14514" y="351.66952" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="362.14514" y="366.543114" transform="rotate(-0 362.14514 366.543114)">C2</text>
+     </g>
+    </g>
+    <g id="text_3">
+     <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="278.154521" y="380.608114" transform="rotate(-0 278.154521 380.608114)">商飞测试电芯</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3">
+      <defs>
+       <path id="mb29815420b" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="66.923827" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="70.860624" transform="rotate(-0 103.173281 70.860624)">MICN / 2021</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="118.695771" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="122.632568" transform="rotate(-0 103.173281 122.632568)">MICN / 42</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="170.467715" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="174.404512" transform="rotate(-0 103.173281 174.404512)">MICN / 2024</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="222.23966" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="226.176456" transform="rotate(-0 103.173281 226.176456)">iTransformer / 2021</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="274.011604" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="277.948401" transform="rotate(-0 103.173281 277.948401)">iTransformer / 42</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#mb29815420b" x="110.173281" y="325.783548" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="103.173281" y="329.720345" transform="rotate(-0 103.173281 329.720345)">iTransformer / 2024</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 110.173281 351.66952 
+L 110.173281 41.037855 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 110.173281 351.66952 
+L 446.13576 351.66952 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_10">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 63.945061)">86.79%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(179.943823 75.58478)">&gt;15%</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(343.492406 63.945061)">68.84%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(347.925062 75.58478)">&gt;15%</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 115.717006)">42.08%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(179.943823 127.356724)">&gt;15%</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(343.492406 115.717006)">29.06%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(347.925062 127.356724)">&gt;15%</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 167.48895)">11.35%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(167.415854 179.128669)">≤15% 达标</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(346.550922 167.48895)">0.79%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(335.397093 179.128669)">≤15% 达标</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 219.260894)">44.33%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(179.943823 230.900613)">&gt;15%</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(343.492406 219.260894)">49.65%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(347.925062 230.900613)">&gt;15%</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 271.032838)">75.97%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(179.943823 282.672557)">&gt;15%</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(343.492406 271.032838)">78.16%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(347.925062 282.672557)">&gt;15%</text>
+   </g>
+   <g id="text_20">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(175.511167 322.804782)">28.30%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(179.943823 334.444501)">&gt;15%</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(343.492406 322.804782)">35.14%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(347.925062 334.444501)">&gt;15%</text>
+   </g>
+   <g id="text_22">
+    <text style="font: 12px 'Arial Unicode MS'; text-anchor: middle" x="278.154521" y="35.037855" transform="rotate(-0 278.154521 35.037855)">正式口径：总寿命相对误差</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_5">
+    <path d="M 558.037041 351.66952 
+L 893.99952 351.66952 
+L 893.99952 41.037855 
+L 558.037041 41.037855 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#p2486c89842)">
+    <image xlink:href="data:image/png;base64,
+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" id="image3deab7be13" transform="scale(1 -1) translate(0 -311.04)" x="558.037041" y="-40.62952" width="336.24" height="311.04"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_3">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#mbca1f29538" x="642.027661" y="351.66952" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="642.027661" y="366.543114" transform="rotate(-0 642.027661 366.543114)">C1</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#mbca1f29538" x="810.0089" y="351.66952" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="810.0089" y="366.543114" transform="rotate(-0 810.0089 366.543114)">C2</text>
+     </g>
+    </g>
+    <g id="text_25">
+     <text style="font: 11px 'Arial Unicode MS'; text-anchor: middle" x="726.018281" y="380.608114" transform="rotate(-0 726.018281 380.608114)">商飞测试电芯</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_7">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="66.923827" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="70.860624" transform="rotate(-0 551.037041 70.860624)">MICN / 2021</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="118.695771" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="122.632568" transform="rotate(-0 551.037041 122.632568)">MICN / 42</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="170.467715" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="174.404512" transform="rotate(-0 551.037041 174.404512)">MICN / 2024</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="222.23966" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_29">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="226.176456" transform="rotate(-0 551.037041 226.176456)">iTransformer / 2021</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="274.011604" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_30">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="277.948401" transform="rotate(-0 551.037041 277.948401)">iTransformer / 42</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#mb29815420b" x="558.037041" y="325.783548" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_31">
+      <text style="font: 11px 'Arial Unicode MS'; text-anchor: end" x="551.037041" y="329.720345" transform="rotate(-0 551.037041 329.720345)">iTransformer / 2024</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_6">
+    <path d="M 558.037041 351.66952 
+L 558.037041 41.037855 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 558.037041 351.66952 
+L 893.99952 351.66952 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_32">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(620.316411 63.945061)">117.90%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 75.58478)">&gt;15%</text>
+   </g>
+   <g id="text_33">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(791.356166 63.945061)">90.42%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(795.788822 75.58478)">&gt;15%</text>
+   </g>
+   <g id="text_34">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(623.374927 115.717006)">57.16%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 127.356724)">&gt;15%</text>
+   </g>
+   <g id="text_35">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(791.356166 115.717006)">38.18%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(795.788822 127.356724)">&gt;15%</text>
+   </g>
+   <g id="text_36">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(623.374927 167.48895)">15.42%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 179.128669)">&gt;15%</text>
+   </g>
+   <g id="text_37">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(794.414682 167.48895)">1.04%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(783.260853 179.128669)">≤15% 达标</text>
+   </g>
+   <g id="text_38">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(623.374927 219.260894)">60.21%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 230.900613)">&gt;15%</text>
+   </g>
+   <g id="text_39">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(791.356166 219.260894)">65.21%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(795.788822 230.900613)">&gt;15%</text>
+   </g>
+   <g id="text_40">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(620.316411 271.032838)">103.20%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 282.672557)">&gt;15%</text>
+   </g>
+   <g id="text_41">
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(788.29765 271.032838)">102.67%</text>
+    <text style="fill: #ffffff; font: 11px 'Arial Unicode MS'" transform="translate(795.788822 282.672557)">&gt;15%</text>
+   </g>
+   <g id="text_42">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(623.374927 322.804782)">38.45%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(627.807583 334.444501)">&gt;15%</text>
+   </g>
+   <g id="text_43">
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(791.356166 322.804782)">46.16%</text>
+    <text style="fill: #222222; font: 11px 'Arial Unicode MS'" transform="translate(795.788822 334.444501)">&gt;15%</text>
+   </g>
+   <g id="text_44">
+    <text style="font: 12px 'Arial Unicode MS'; text-anchor: middle" x="726.018281" y="35.037855" transform="rotate(-0 726.018281 35.037855)">补充口径：剩余寿命相对误差</text>
+   </g>
+  </g>
+  <g id="text_45">
+   <text style="font: 13.2px 'Arial Unicode MS'; text-anchor: middle" x="450.59976" y="17.576437" transform="rotate(-0 450.59976 17.576437)">商飞：同一个绝对误差，换成 RUL 分母后相对误差会变大</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p97c8d7793e">
+   <rect x="110.173281" y="41.037855" width="335.962479" height="310.631665"/>
+  </clipPath>
+  <clipPath id="p2486c89842">
+   <rect x="558.037041" y="41.037855" width="335.962479" height="310.631665"/>
+  </clipPath>
+ </defs>
+</svg>

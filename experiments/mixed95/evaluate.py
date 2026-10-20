@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from argparse import Namespace
 from pathlib import Path
 
 import numpy as np
 
-from experiments.comac95.data import NOMINAL_AH, SOC_SPAN, read_capacity_history, read_early_curves
-from experiments.comac95.run import _normalized_curve
+from experiments.comac95.data import read_capacity_history
+from experiments.mixed95.comac_input import (
+    PREPROCESSING_VERSION, TARGET_DIRECTORY, load_target_input,
+    original_loader_features, read_early_cycle_records,
+)
 from experiments.mixed95.prepare import DEFAULT_OUTPUT, EARLY_CYCLES
 
 
@@ -31,23 +35,7 @@ def _write_csv(path: Path, rows: list[dict]) -> None:
 
 def build_target_input(raw_root: Path, cell: str) -> tuple[np.ndarray, np.ndarray]:
     """Use physical cycles 1..100, with RPT cycle 1 zeroed and masked."""
-    curves = read_early_curves(raw_root, cell, max_physical_cycle=EARLY_CYCLES)
-    features = np.zeros((EARLY_CYCLES, 3, CURVE_LENGTH), dtype=np.float32)
-    mask = np.zeros(EARLY_CYCLES, dtype=np.float32)
-    for physical_cycle, parts in curves.items():
-        if not 2 <= physical_cycle <= EARLY_CYCLES:
-            raise ValueError(f"future/RPT curve in {cell} input: {physical_cycle}")
-        # The source loader divides both input current and capacity by nominal Ah.
-        # The 0.94 SOC span belongs only to COMAC's life-label definition.
-        features[physical_cycle - 1] = _normalized_curve(
-            parts["charge"], parts["discharge"], NOMINAL_AH, capacity_span=1.0
-        )
-        mask[physical_cycle - 1] = 1
-    if set(curves) != set(range(2, EARLY_CYCLES + 1)) or mask[0] != 0:
-        raise ValueError(f"{cell}: missing or extra early physical cycles")
-    if not np.isfinite(features).all():
-        raise ValueError(f"{cell}: non-finite input features")
-    return features, mask
+    return original_loader_features(read_early_cycle_records(raw_root, cell))
 
 
 def prepare_comac(raw_root: Path = DEFAULT_COMAC, output: Path = DEFAULT_OUTPUT) -> dict:
@@ -55,8 +43,10 @@ def prepare_comac(raw_root: Path = DEFAULT_COMAC, output: Path = DEFAULT_OUTPUT)
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    target_dir = output / "comac"
-    target_dir.mkdir(parents=True, exist_ok=True)
+    target_dir = output / TARGET_DIRECTORY
+    if target_dir.exists():
+        raise FileExistsError(f"refusing to overwrite corrected COMAC inputs: {target_dir}")
+    prepared = {}
     labels = {}
     for cell in ("C1", "C2"):
         ordinary, rpt, life, issues = read_capacity_history(raw_root, cell)
@@ -64,13 +54,18 @@ def prepare_comac(raw_root: Path = DEFAULT_COMAC, output: Path = DEFAULT_OUTPUT)
             raise RuntimeError(f"{cell}: got proxy crossing {life}, expected {EXPECTED_LIFE[cell]}; inspect audit")
         features, mask = build_target_input(raw_root, cell)
         labels[cell] = life
+        prepared[cell] = (ordinary, rpt, issues, features, mask)
+    target_dir.mkdir(parents=True)
+    for cell, (ordinary, rpt, issues, features, mask) in prepared.items():
+        life = labels[cell]
         _write_csv(target_dir / f"{cell}_ordinary_proxy.csv", ordinary)
         _write_csv(target_dir / f"{cell}_rpt_measured.csv", rpt)
         (target_dir / f"{cell}_capacity_issues.json").write_text(
             json.dumps(issues, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         np.savez_compressed(target_dir / f"{cell}_input.npz", features=features, mask=mask,
-                            physical_cycles=np.arange(1, EARLY_CYCLES + 1))
+                            physical_cycles=np.arange(1, EARLY_CYCLES + 1),
+                            preprocessing_version=np.asarray(PREPROCESSING_VERSION))
 
         fig, ax = plt.subplots(figsize=(9, 4))
         ax.plot([r["cycle"] for r in ordinary], [100 * r["soh_cycle_estimate"] for r in ordinary],
@@ -87,6 +82,19 @@ def prepare_comac(raw_root: Path = DEFAULT_COMAC, output: Path = DEFAULT_OUTPUT)
     (target_dir / "COMAC_proxy_labels_95.json").write_text(
         json.dumps(labels, indent=2), encoding="utf-8"
     )
+    (target_dir / "input_provenance.json").write_text(json.dumps({
+        "preprocessing_version": PREPROCESSING_VERSION,
+        "feature_method": "Dataset_original.get_charge_discharge_curves (unchanged)",
+        "loader_sha256": hashlib.sha256(
+            (Path(__file__).resolve().parents[2] / "data_provider/data_loader.py").read_bytes()
+        ).hexdigest(),
+        "physical_cycles": [1, 100], "masked_rpt_cycles": [1],
+        "capacity_feature_denominator_ah": 183,
+        "label_formula": "ordinary_discharge_ah / 0.94 / 183",
+        "legacy_input_preserved": str(output / "comac"),
+        "input_sha256": {cell: hashlib.sha256(
+            (target_dir / f"{cell}_input.npz").read_bytes()).hexdigest() for cell in labels},
+    }, indent=2), encoding="utf-8")
     return labels
 
 
@@ -121,7 +129,7 @@ def evaluate(output: Path = DEFAULT_OUTPUT, *, run_id: str = "paper95_v1") -> di
     import torch
 
     run_root = output / "runs" / run_id
-    destination = run_root / "held_out_comac_evaluation_95.json"
+    destination = run_root / "held_out_comac_evaluation_95_loader_v2.json"
     if destination.exists():
         raise FileExistsError(f"COMAC has already been evaluated for this run: {destination}")
     manifest = json.loads((run_root / "manifest.json").read_text(encoding="utf-8"))
@@ -132,20 +140,17 @@ def evaluate(output: Path = DEFAULT_OUTPUT, *, run_id: str = "paper95_v1") -> di
         row.get("status") != "complete" for row in records.values()
     ):
         raise RuntimeError("all three source-trained seeds must complete before COMAC evaluation")
-    target_dir = output / "comac"
+    target_dir = output / TARGET_DIRECTORY
     labels = json.loads((target_dir / "COMAC_proxy_labels_95.json").read_text(encoding="utf-8"))
     if labels != EXPECTED_LIFE:
         raise ValueError("COMAC proxy labels do not match audited 379/419 crossings")
+    inputs = {cell: load_target_input(target_dir / f"{cell}_input.npz") for cell in labels}
     rows = []
     for seed in (2021, 42, 2024):
         checkpoint = Path(records[str(seed)]["checkpoint"])
         model, scaler = _load_paper_model(checkpoint)
         for cell in ("C1", "C2"):
-            with np.load(target_dir / f"{cell}_input.npz") as data:
-                features, mask, cycles = data["features"], data["mask"], data["physical_cycles"]
-            if features.shape != (100, 3, 300) or mask.shape != (100,) or \
-                    not np.array_equal(cycles, np.arange(1, 101)) or mask[0] != 0:
-                raise ValueError(f"{cell}: invalid early input artifact")
+            features, mask = inputs[cell]
             with torch.no_grad():
                 x = torch.from_numpy(features[None]) * torch.from_numpy(mask[None, :, None, None])
                 prediction_scaled = float(model(x, torch.from_numpy(mask[None])).item())
@@ -155,12 +160,17 @@ def evaluate(output: Path = DEFAULT_OUTPUT, *, run_id: str = "paper95_v1") -> di
                          "proxy_label_life_cycle": truth,
                          "absolute_error_cycles": abs(prediction - truth),
                          "ape_percent": 100 * abs(prediction - truth) / truth})
-    _write_csv(run_root / "held_out_comac_evaluation_95.csv", rows)
+    _write_csv(run_root / "held_out_comac_evaluation_95_loader_v2.csv", rows)
     report = {
         "source_test_by_seed": {seed: row["source_test"] for seed, row in records.items()},
         "comac": rows,
         "warning": "379/419 are ordinary-cycle proxy crossings, not full-RPT measured 95% lives.",
         "target_use": "C1/C2 held out; no training, normalization, fine-tuning or checkpoint selection",
+        "target_preprocessing_version": PREPROCESSING_VERSION,
+        "target_input_dir": str(target_dir),
+        "target_input_sha256": {cell: hashlib.sha256(
+            (target_dir / f"{cell}_input.npz").read_bytes()).hexdigest() for cell in labels},
+        "prior_evaluation_preserved": (run_root / "held_out_comac_evaluation_95.json").exists(),
     }
     destination.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return report

@@ -1,0 +1,37 @@
+# Install torch==2.4.1 from the cu118 index first on the current sm_89 server.
+# Install deepspeed==0.15.0 separately after these dependencies are available.
+accelerate==0.29.3
+BatteryML @ https://codeload.github.com/microsoft/BatteryML/zip/2861ae3b8c79938c7fc8e6fe9986b799ca71c7dd
+datasets==2.19.0
+denseweight==0.1.2
+evaluate==0.4.1
+joblib==1.4.0
+matplotlib==3.8.4
+numpy==1.26.4
+pandas==2.2.3
+peft==0.12.0
+reformer_pytorch==1.4.4
+Requests==2.32.3
+scikit_learn==1.4.2
+scipy==1.15.2
+seaborn==0.13.2
+sympy==1.12
+torch==2.4.1
+tqdm==4.66.2
+transformers==4.43.4
+# Missing from the original requirements but imported by the trainer.
+wandb==0.18.1
+safetensors==0.4.5
+# Avoid newer transitive releases that removed APIs used by the 2024 stack.
+pyarrow==16.1.0
+huggingface_hub==0.24.7
+pydantic==2.9.2
+ninja==1.11.1.1
+# BatteryML imports these packages; explicit versions keep setup reproducible.
+addict==2.4.0
+fire==0.6.0
+h5py==3.12.1
+numba==0.60.0
+openpyxl==3.1.5
+pyyaml==6.0.2
+xgboost==1.7.6

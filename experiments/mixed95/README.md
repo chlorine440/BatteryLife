@@ -1,5 +1,8 @@
 # BatteryLife MIX_large → COMAC C1/C2, 95% SOH
 
+The frozen 13-model extension is documented in [BENCHMARK.md](BENCHMARK.md).
+It preserves the existing single-model entry points and audited results.
+
 This experiment keeps the original CPTransformer, source curves, cell splits,
 feature processing, MSE training loss and validation-based checkpoint selection.
 It changes the source life threshold to 95% and adapts COMAC Excel only for
@@ -45,11 +48,52 @@ curve loader, saving any per-cell extraction error in `source_curves_audit_95.js
 
 COMAC preparation saves the original ordinary-cycle capacities, the separate
 full-discharge RPT values, cleaning issues, early input arrays and two QA plots
-under `dataset/mixed95/comac`. The labels must be C1=379 and C2=419. These
+under `dataset/mixed95/comac_loader_v2` (the old sign-split `comac` artifacts
+are preserved separately). The labels must be C1=379 and C2=419. These
 are **ordinary-cycle proxy crossings, not full-RPT measured 95% lives**.
 Only physical cycles 1–100 can enter the model. RPT cycle 1 is zero-filled and
 masked. Target life labels use discharge Ah/(183×0.94 Ah), while target model
 input uses the original feature normalization: current/183 and capacity/183.
+
+### Original-loader COMAC adapter correction (2026-10-08)
+
+The original sign-filtered COMAC adapter did not exactly reproduce the source
+loader's phase endpoint convention. The mixed95 adapter now preserves full
+chronological cycling records, including rests and both lifetime Ah counters,
+converts the counters to per-cycle Ah, then calls the unchanged
+`Dataset_original.get_charge_discharge_curves` for all phase selection,
+resampling and normalization. In particular, the original charge-first method
+excludes the final charging record from the charge segment and retains it at
+the start of the discharge segment. This legacy convention is retained for
+strict source/target consistency, not proposed as a new physical definition.
+The original model, source curves, training code, source labels, checkpoints,
+183 Ah feature scaling and 0.94 label correction are unchanged.
+
+Run `python -m experiments.mixed95.evaluate prepare-comac` locally to create
+**new** versioned artifacts in `dataset/mixed95/comac_loader_v2`. It refuses
+to overwrite an existing v2 directory and does not alter the old `comac`
+directory. Both inputs store `batterylife_original_loader_v2` metadata;
+evaluation rejects old/unversioned artifacts. `input_provenance.json` records
+the loader hash, input hashes, masked physical RPT cycle 1 and labels' formula.
+Physical cycles 2–100 retain their original positions; no later cycle replaces
+the gap. The C1/C2 proxy labels remain 379/419.
+
+If a corrected evaluation is explicitly requested, reuse the already-selected
+source checkpoints; no source retraining is required for this adapter fix:
+
+```sh
+python -m experiments.mixed95.evaluate evaluate --run-id paper95_20261008_v1
+```
+
+This now reads only `comac_loader_v2` and saves
+`held_out_comac_evaluation_95_loader_v2.json` and `.csv`. Old
+`held_out_comac_evaluation_95.json`/`.csv` results remain untouched. The v2
+result is an input-implementation correction, not a new independent held-out
+experiment; do not choose models or preprocessing from C1/C2 error changes.
+The second v2 evaluation for the same run is refused. Regeneration of inputs
+does not itself invoke model inference or train a model. Transfer the new
+adapter code and **the new v2 directory**, not only the old `comac` artifacts,
+before evaluating on the server.
 
 ## Original-paper training
 
@@ -71,10 +115,57 @@ BatteryML package is not published on PyPI. Install `wandb` separately because
 the original trainer imports it but it is missing from `requirements.txt`.
 
 On a compatible two-GPU server, transfer the 13 processed source folders,
-`dataset/seen_unseen_labels`, and the small `dataset/mixed95/comac` artifacts.
+`dataset/seen_unseen_labels`, and the small `dataset/mixed95/comac_loader_v2` artifacts.
 Symlinks generated on this Mac
 have absolute local targets, so rerun source preparation on the server with
 its source path before training:
+
+The current server exposes two 32 GiB GPUs with CUDA capability 8.9 and a
+CUDA 11.8 toolkit, so the original Torch 2.4.1 version can be retained. Its
+isolated environment is `dataset/.conda_envs/mixed95`. For a fresh environment:
+
+```sh
+source /root/miniconda3/etc/profile.d/conda.sh
+conda create -y -p "$PWD/dataset/.conda_envs/mixed95" python=3.11 pip
+conda activate "$PWD/dataset/.conda_envs/mixed95"
+python -m pip install pip==25.2 setuptools==75.1.0 wheel
+python -m pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cu118
+python -m pip install --no-build-isolation -r experiments/mixed95/requirements-server.txt
+python -m pip install --no-build-isolation deepspeed==0.15.0
+python -m pip check
+```
+
+The published Ninja 1.11.1.1 and XGBoost 1.7.6 wheels have malformed or
+inconsistent internal platform tags, so `pip check` can report these two as
+unsupported despite successful installation. On the current Linux server,
+Ninja execution, XGBoost import and the original training-entry imports were
+verified separately; there are no missing or conflicting dependency versions.
+Do not ignore additional dependency errors or CUDA failures.
+
+The server requirements retain every original pinned training dependency;
+BatteryML is fetched from the archived commit used locally, and missing or
+otherwise unpinned support dependencies are recorded separately. This cu118
+setup is for the current sm_89 hardware; RTX 5090 needs a newer CUDA-enabled
+Torch build. Changing the installer source does not change the model or batch
+configuration.
+
+On 2026-10-08 the current two-sm_89-GPU server passed all 468 eligible
+source-curve checks and the full-configuration one-epoch smoke run
+`resource_check_20261008_v1`, including validation and checkpoint saving.
+The model has 3,857,217 trainable parameters; training compute took 18.16 s,
+while loading the three source splits dominated the approximately 9-minute
+startup. Ten-second GPU samples reached 4,759 MiB on each GPU (a sampled
+maximum, not an exact instantaneous peak). The smoke metrics are not final
+experiment results and its weights were not evaluated on COMAC.
+
+The full run `paper95_20261008_v1` was started in the server background.
+Its wrapper trains all three seeds before calling the one-time COMAC
+evaluation; errors stop the wrapper instead of changing the configuration.
+On that server, inspect progress without starting another training process:
+
+```sh
+tail -f /root/autodl-tmp/BatteryLife/dataset/mixed95/setup/paper95_console_20261008.log
+```
 
 ```sh
 python -m experiments.mixed95.prepare --source /server/path/batterylife
