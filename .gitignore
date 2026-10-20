@@ -16,3 +16,7 @@ outputs/
 dataset/
 
 /tmp*
+
+# Superseded visualization draft and generated font cache
+/reports/micn_itransformer_visualization_20261013/
+/reports/micn_itransformer_visualization_20261013_v2/.mplcache/
